@@ -23,7 +23,7 @@ AC_SUBST(JANUS_VERSION_STRING)
 case "$host_os" in
 darwin*)
 	CFLAGS="$CFLAGS -I/usr/local/opt/openssl/include -I/usr/local/include"
-	LDFLAGS="$LDFLAGS -L/usr/local/lib -L/usr/local/opt/openssl/lib -L/opt/local/lib -L/usr/local/libsrtp/lib"
+	LDFLAGS="$LDFLAGS -L/usr/local/lib -L/usr/local/opt/openssl/lib -L/opt/local/lib -LLibs/libsrtp/"
 	AM_CONDITIONAL([DARWIN_OS], true)
 	AM_CONDITIONAL([HAS_DTLS_WINDOW_SIZE], false)
 ;;
@@ -302,7 +302,7 @@ AS_IF([test "x$enable_libsrtp2" != "xno"],
                       AC_CHECK_HEADER([srtp2/srtp.h],
                                       [
                                         AC_DEFINE(HAVE_SRTP_2)
-                                        JANUS_MANUAL_LIBS+=" -lsrtp2"
+                                        JANUS_MANUAL_LIBS+=" -lsrtp2 "
                                         enable_libsrtp2=yes
                                         AM_CONDITIONAL([ENABLE_LIBSRTP_2], true)
                                         AC_CHECK_LIB([srtp2],
